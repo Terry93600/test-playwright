@@ -1,0 +1,17 @@
+# Spécifie les étapes à exécuter lors du pipeline
+stages:
+  - build
+  - test
+
+# Définit les jobs pour chaque étape
+build:
+  stage: build
+  # Commandes à exécuter pour construire l'image Docker
+  script:
+    - docker build -t monapp:latest .
+
+test:
+  stage: test
+  # Commandes à exécuter pour exécuter les tests dans un conteneur Docker
+  script:
+    - docker run monapp:latest npm test
